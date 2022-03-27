@@ -11,7 +11,19 @@ module.exports = {
       return a.id > b.id ? 1 : -1; 
   });
 
-  response.writeHead(200, { 'Content-Type': 'text/html'});
+  response.writeHead(200, { 'Content-Type': 'application/json' });
   response.end(JSON.stringify(sortedUsers));
   },
+  getUsersById(request, response){
+    const { id } = request.params;
+
+    const user = users.find((user) => user.id === Number(id));
+    if (!user) {
+      response.writeHead(200, { 'Content-Type': 'application/json' });
+      response.end(JSON.stringify({ok : true}));
+    } else {
+      response.writeHead(200, { 'Content-Type': 'application/json' });
+      response.end(JSON.stringify({ok : true}));
+    }
+  }
 };
